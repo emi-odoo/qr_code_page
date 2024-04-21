@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+    <style>
+        body { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0;
+            background: linear-gradient(to right, #74ebd5, #acb6e5); /* Stylish background gradient */
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px; /* fixed width */
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: calc(100% - 20px); /* full width minus padding */
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            transition: background-color 0.3s; /* Smooth transition for background color */
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #qrcode {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center; /* centers the QR code horizontally within the div */
+        }
+        a {
+            color: #007bff;
+            text-decoration: none; /* removes underline */
+            font-size: 14px;
+            transition: color 0.3s; /* Smooth color transition on hover */
+        }
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline; /* adds underline on hover for better UX */
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px; /* Smaller font size for subtlety */
+            opacity: 0.8; /* Slightly transparent */
+            transition: opacity 0.3s; /* Smooth opacity transition */
+        }
+        .footer:hover {
+            opacity: 1; /* Full opacity on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code Generator</h1>
+        <input type="text" id="userInput" placeholder="Enter URL or Phone Number">
+        <button onclick="generateQR()">Generate QR Code</button>
+        <div id="qrcode"></div>
+        <button onclick="downloadQR()">Download QR Code</button>
+        <div class="footer">
+            This is a very simple page that allows you to generate and download a QR code.
+            Nothing fancy is going on here, just put whatever you need to encode and click on the Generate button.
+            Test that the QR code works as expected and then download it.
+            
+            Use the inspect tool of your browser to check the code of this page to be sure that nothing weird is going on.
+
+            There's probably millions of website that do the same, but hopefully you will land on a similar one, where you don't have to pay to use it.
+            <a href="https://github.com/davidshimjs/qrcodejs" target="_blank">QR Code Library by David Shim</a>
+            Big thanks to the developers of qrcodejs
+
+        </div>
+    </div>
+
+    <script>
+        function generateQR() {
+            var input = document.getElementById('userInput').value;
+            var qrcodeContainer = document.getElementById('qrcode');
+            qrcodeContainer.innerHTML = ''; // Clear previous QR code
+            var qr = new QRCode(qrcodeContainer, {
+                text: input,
+                width: 128,
+                height: 128,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        }
+
+        function downloadQR() {
+            var qrcodeImg = document.querySelector('#qrcode img');
+            var anchor = document.createElement('a');
+            anchor.href = qrcodeImg.src;
+            anchor.download = 'qrcode.png';
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+        }
+    </script>
+</body>
+</html>
