@@ -6,65 +6,80 @@
     <title>QR Code Generator</title>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
     <style>
-        body { 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
+       /* Basic reset */
+       body, h1, button, input, a {
             margin: 0;
-            background: linear-gradient(to right, #74ebd5, #acb6e5); /* Stylish background gradient */
-            font-family: 'Arial', sans-serif;
-        }
-        .container {
-            text-align: center;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 300px; /* fixed width */
-        }
-        input, button {
-            margin: 10px 0;
-            padding: 10px;
-            width: calc(100% - 20px); /* full width minus padding */
-            border: 2px solid #ccc;
-            border-radius: 5px;
+            padding: 0;
+            border: 0;
             outline: none;
-            font-size: 16px;
         }
+
+        body {
+            background-color: #e0e0e0; /* Light gray background */
+            font-family: 'Courier New', Courier, monospace; /* Retro monospace font */
+            color: #000; /* Black text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff; /* White background for contrast */
+            border: 4px solid #000; /* Bold black border */
+            padding: 20px;
+            text-align: center;
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.75); /* Large, blocky shadow */
+        }
+
+        h1 {
+            font-size: 24px;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        input, button, a {
+            background-color: #fff; /* White background for inputs and buttons */
+            border: 2px outset #000; /* 3D effect border */
+            padding: 8px 16px;
+            font-size: 16px;
+            color: black;
+            margin-top: 10px;
+            display: block; /* Make buttons and inputs take full available width */
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         button {
             cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            transition: background-color 0.3s; /* Smooth transition for background color */
         }
-        button:hover {
-            background-color: #45a049;
+
+        button:active {
+            border-style: inset; /* Tactile feedback on click */
         }
+
         #qrcode {
             margin-top: 15px;
             display: flex;
-            justify-content: center; /* centers the QR code horizontally within the div */
+            justify-content: center;
         }
-        a {
-            color: #007bff;
-            text-decoration: none; /* removes underline */
-            font-size: 14px;
-            transition: color 0.3s; /* Smooth color transition on hover */
-        }
-        a:hover {
-            color: #0056b3;
-            text-decoration: underline; /* adds underline on hover for better UX */
-        }
+
         .footer {
             margin-top: 20px;
-            font-size: 12px; /* Smaller font size for subtlety */
-            opacity: 0.8; /* Slightly transparent */
-            transition: opacity 0.3s; /* Smooth opacity transition */
+            font-size: 14px;
+            color: #000; /* Black color for footer links */
         }
-        .footer:hover {
-            opacity: 1; /* Full opacity on hover */
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button:hover, a:hover {
+            text-decoration: underline;
+            background-color: beige;
         }
     </style>
 </head>
